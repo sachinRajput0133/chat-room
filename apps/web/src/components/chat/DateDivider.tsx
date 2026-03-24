@@ -1,0 +1,11 @@
+interface DateDividerProps {
+  label: string;
+}
+
+export default function DateDivider({ label }: DateDividerProps) {
+  return (
+    <div className="date-divider">
+      <span className="">{label}</span>
+    </div>
+  );
+}

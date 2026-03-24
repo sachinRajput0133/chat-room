@@ -1,0 +1,4 @@
+# Exclude generated/vendor files from GitHub language stats
+node_modules/* linguist-vendored
+**/node_modules/* linguist-vendored
+pnpm-lock.yaml linguist-generated

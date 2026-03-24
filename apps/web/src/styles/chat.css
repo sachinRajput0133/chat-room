@@ -1,0 +1,482 @@
+@import './variables.css';
+@import './sidebar.css';
+
+/* ===== Chat Layout ===== */
+.chat-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+/* ===== Chat Panel ===== */
+.chat-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  position: relative;
+}
+
+.chat-panel--loading,
+.chat-panel--empty {
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-panel__bg {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  background: #ffffff;
+}
+
+.chat-panel__bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/chat-bg.png');
+  background-repeat: repeat;
+  background-size: 800px auto;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Keep message list above the pseudo-element */
+.chat-panel__bg>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Chat Header — Figma: #F1F5F9 bg, #CBD5E1 border, 80px, padding 16px 24px ===== */
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #F1F5F9;
+  border-bottom: 1px solid #CBD5E1;
+  min-height: 80px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.chat-header__left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  overflow: hidden;
+}
+
+.chat-header__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* Chat header name — Figma: Plus Jakarta Sans Bold 16px, -0.007em, #1B1B1B */
+.chat-header__name {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: -0.007em;
+  color: #1B1B1B;
+}
+
+.chat-header__participants {
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: 500;
+  color: #94A3B8;
+}
+
+.chat-header__members {
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: 400;
+  color: #64748B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-header__uid {
+  font-size: 10px;
+  font-weight: 400;
+  color: #94A3B8;
+  font-family: monospace;
+}
+
+.message-sender-id {
+  font-size: 10px;
+  font-weight: 400;
+  color: #94A3B8;
+  font-family: monospace;
+}
+
+.chat-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.chat-header__logout {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  transition: background 0.15s;
+}
+
+.chat-header__logout:hover {
+  background: #E2E8F0;
+  color: var(--color-text-primary);
+}
+
+/* ===== Message List ===== */
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+}
+
+.message-list__inner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  gap: 16px;
+}
+
+.message-group {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* Even spacing between messages! */
+}
+
+.message-list__empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* ===== Date Divider ===== */
+.date-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md) 0 var(--spacing-sm);
+  color: #94A3B8; /* rgba(148, 163, 184, 1) */
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.006em;
+}
+
+.date-divider span {
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+/* ===== Message Bubbles ===== */
+.message-bubble-wrapper {
+  display: flex;
+  flex-direction: column;
+  /* Removed manual bottom margins, controlled by .message-group gap now */
+}
+
+.message-bubble-wrapper.sent {
+  align-items: flex-end;
+}
+
+.message-bubble-wrapper.received {
+  align-items: flex-start;
+}
+
+.message-sender-name {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+  margin-left: 2px;
+}
+
+.message-bubble {
+  max-width: 68%;
+  padding: 10px 14px;
+  border-radius: var(--radius-lg); /* Rounded on ALL 4 sides now */
+  word-break: break-word;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-wrap: wrap; /* Allows time to drop below text for multi-line */
+  align-items: flex-end;
+  gap: 4px 12px;
+}
+
+.message-bubble.sent {
+  background: var(--color-bubble-sent);
+  color: var(--color-bubble-sent-text);
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.message-bubble.received {
+  background: var(--color-bubble-received);
+  color: var(--color-bubble-received-text);
+  /* Reverted asymmetrical border radiuses */
+}
+
+.message-content {
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  /* max-width constraint ensures it respects bubble limits while triggering wrap if needed */
+  max-width: 100%;
+}
+
+.message-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: auto; /* Pushes time to the right corner */
+}
+
+.message-time {
+  font-size: var(--font-size-xs);
+  opacity: 0.7;
+}
+
+/* Sent status below bubble */
+.message-status-row {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 3px;
+  margin-right: 2px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* ===== Message Input Bar ===== */
+.message-input-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px var(--spacing-md);
+  /* The bar wrapper has transparent bg in order to show chat background beneath, but we'll use solid white if we have a top bar. Let's make it fully transparent so the layout fits nicely */
+  background: transparent;
+  min-height: 88px; /* 64px + 12px * 2 */
+}
+
+.message-input-container {
+  display: flex;
+  align-items: center;
+  width: 916px;
+  height: 64px;
+  max-width: 100%;
+  background: #ffffff;
+  border: 1px solid #D9D8ED;
+  border-radius: 123px;
+  padding: 0 12px;
+  gap: var(--spacing-sm);
+}
+
+.message-input-bar__attach {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  transition: color 0.15s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.message-input-bar__attach:hover {
+  color: var(--color-primary);
+}
+
+/* Input — Figma: Medium 16px */
+.message-input-bar__input {
+  flex: 1;
+  height: 44px;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.007em;
+  color: var(--color-text-primary);
+  resize: none;
+  line-height: 24px;
+}
+
+.message-input-bar__input:focus {
+  outline: none;
+}
+
+.message-input-bar__input::placeholder {
+  color: #8B99AC;
+}
+
+.message-input-bar__mic {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  transition: color 0.15s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.message-input-bar__mic:hover {
+  color: var(--color-primary);
+}
+
+/* Send button */
+.message-input-bar__send {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: transparent; /* Assuming the SVG itself has the purple circle, the SVG has the purple vector */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.message-input-bar__send svg {
+  width: 40px;
+  height: 40px;
+}
+
+.message-input-bar__send:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.message-input-bar__send:disabled {
+  opacity: 0.45;
+}
+
+/* ===== Empty State ===== */
+.chat-panel__empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  text-align: center;
+  padding: var(--spacing-xl);
+}
+
+.empty-state-icon {
+  font-size: 56px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.chat-panel__empty-state h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.chat-panel__empty-state p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  max-width: 300px;
+}
+
+/* ===== Modal ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--spacing-md);
+}
+
+.modal {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+
+.modal__close {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  transition: background 0.15s;
+}
+
+.modal__close:hover {
+  background: var(--color-bg);
+}
+
+.modal__error {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: var(--radius-sm);
+  color: #dc2626;
+  font-size: var(--font-size-sm);
+}
+
+.modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xs);
+}

@@ -1,0 +1,212 @@
+/* ===== Sidebar — Figma: 476px wide ===== */
+.sidebar {
+  width: 476px;
+  flex-shrink: 0;
+  height: 100%;
+  background: #ffffff;
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header — Figma: padding 24px 16px 16px, gap 10px */
+.sidebar__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 16px 16px;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Header top row: title + create button */
+.sidebar__header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Title — Figma: Plus Jakarta Sans ExtraBold 24px, -0.012em, #1B1B1B */
+.sidebar__title {
+  font-family: var(--font-family);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 32px;
+  letter-spacing: -0.012em;
+  color: #1B1B1B;
+}
+
+.sidebar__create-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.sidebar__create-btn:hover {
+  background: var(--color-primary-dark);
+}
+
+/* Search */
+.sidebar__search {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.sidebar__search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8B99AC;
+  pointer-events: none;
+}
+
+/* Input Base */
+.sidebar__search-input {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  min-height: 40px;
+  padding: 8px 12px 8px 40px; /* 40px left padding for icon */
+  background: #ffffff;
+  border: 1px solid #D9D8ED;
+  border-radius: 123px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.007em;
+  color: var(--color-text-primary);
+  transition: border-color 0.15s;
+}
+
+.sidebar__search-input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.sidebar__search-input::placeholder {
+  color: #8B99AC;
+}
+
+/* List */
+.sidebar__list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar__loading,
+.sidebar__empty {
+  padding: var(--spacing-xl) var(--spacing-md);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* ===== Room List Item — Figma: 476px wide, 80px height, padding 16px ===== */
+.room-list-item {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 12px;
+  width: 100%;
+  min-height: 80px;
+  background: #ffffff;
+  border-bottom: 1px solid #E2E8F0;
+  cursor: pointer;
+  transition: background 0.1s;
+  /* Transparent left border always present to prevent layout shift */
+  border-left: 2px solid transparent;
+}
+
+.room-list-item:hover {
+  background: #f8f9ff;
+}
+
+/* Active — Figma: background #EEF2FF, border-left 2px solid #4F46E5 */
+.room-list-item.active {
+  background: #EEF2FF;
+  border-left-color: #4F46E5;
+}
+
+.room-list-item__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.room-list-item__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  width: 100%;
+}
+
+/* Room name — Figma: Plus Jakarta Sans Bold 16px, -0.007em, #1B1B1B */
+.room-list-item__name {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: -0.007em;
+  color: #1B1B1B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+/* Time — Figma: Medium 14px, #94A3B8 */
+.room-list-item__time {
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.006em;
+  color: #94A3B8;
+  flex-shrink: 0;
+}
+
+.room-list-item__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  width: 100%;
+}
+
+/* Preview text — Figma: Medium 14px, #5C697A */
+.room-list-item__preview {
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.006em;
+  color: #5C697A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}

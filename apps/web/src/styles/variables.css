@@ -1,0 +1,62 @@
+:root {
+  /* Brand — Figma: Brand/60 = #4F46E5 */
+  --color-primary: #4F46E5;
+  --color-primary-dark: #3730a3;
+  --color-primary-light: #6366f1;
+
+  /* Backgrounds */
+  --color-bg: #f0f2f5;
+  --color-bg-sidebar: #ffffff;
+  --color-bg-chat: #F8FAFC;
+  --color-bg-chat-header: #F1F5F9;
+  --color-bg-input: #ffffff;
+  --color-bg-panel: #ffffff;
+
+  /* Text — exact Figma values */
+  --color-text-primary: #1B1B1B;
+  --color-text-secondary: #5C697A;
+  --color-text-muted: #94A3B8;
+  --color-text-inverse: #ffffff;
+
+  /* Borders — exact Figma values */
+  --color-border: #E2E8F0;
+  --color-border-search: #D9D8ED;
+  --color-border-header: #CBD5E1;
+  --color-border-light: #f3f4f6;
+
+  /* Messages */
+  --color-bubble-sent: #4F46E5;
+  --color-bubble-sent-text: #ffffff;
+  --color-bubble-received: #ffffff;
+  --color-bubble-received-text: #1B1B1B;
+
+  /* Status — Figma: #22C55E online, #D9D8ED offline */
+  --color-online: #22C55E;
+  --color-offline: #D9D8ED;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+
+  /* Font — Figma: Plus Jakarta Sans */
+  --font-family: var(--font-jakarta), 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 24px;
+  --font-size-xl: 24px;
+}
