@@ -210,5 +210,3 @@ Server → Client:   new_message, user_joined, user_left, room_created, error
 - Split-screen auth UI (login + signup) with professional design
 - Persistent authentication across page refreshes
 - Responsive design for mobile and desktop
-# chat-room
-# chat-room
